@@ -29,7 +29,8 @@ python3 dcd.py <base> -d/-e "input string" optional: -o/-O <output file>
 
 >> Output
 -o      <append to file>
--O      <overwrite file>
+-O      <overwrite file (with warning)>
+-Of     <no warning force overwrite>
 ```
 
 ___
