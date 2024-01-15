@@ -1,6 +1,6 @@
 ## dcd.py - decoding base, binary, hex, etc from the terminal
 
-> This is a work in progress
+> This is a work in progress <br>
 > Some features (such as .txt file input) are not fully implemented yet
 
 #### Installation
