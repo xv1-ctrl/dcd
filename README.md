@@ -1,5 +1,8 @@
 ## dcd.py - decoding base, binary, hex, etc from the terminal
 
+> This is a work in progress
+> Some features (such as .txt file input) are not fully implemented yet
+
 #### Installation
 - `git clone https://github.com/pwnedbyisa/dcd.git`
 - cd into `dcd` directory
