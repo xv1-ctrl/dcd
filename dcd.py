@@ -25,7 +25,7 @@ def usage():
              '-b85, --base85, --ascii85 \t<FCfN8>',
              '-b91, --base91 \t\t\t<fPNKd>',
              '-u, --unicode \t\t\t<U+74 U+65 U+73 U+74>']
-    out = ['-o \t<append to file>', '-O \t<overwrite file>']  # '-Of \t<no warning force overwrite>']
+    out = ['-o \t<append to file>', '-O \t<overwrite file (with warning)>', '-Of \t<no warning force overwrite>']
 
     print_blue('>> Bases')
     max_len1 = max(len(s) for s in bases)
@@ -80,6 +80,12 @@ def output(func):
                 else:
                     print('\n[*] Use -o to append to file')
                     result = '>>> ' + result + '\n'
+            elif arg[-2] == '-Of':
+                output_file = arg[-1]
+                with open(output_file, 'w') as file:
+                    file.write('\n' + result)
+                result = '\n>>> ' + result
+                result += f'\n[*] Result written to: {output_file}\n'
             else:
                 result = '\n>>> ' + result + '\n'
         except TypeError:
@@ -346,16 +352,39 @@ def b64(operation, inpt, *_):
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# not done
 @output
 def b85(operation, inpt, *_):
     # ascii chars 33 - 117
-    # alphabet = ''.join(chr(i) for i in range(33, 118))
+    alphabet = ''.join(chr(i) for i in range(33, 118))
 
-    if operation in ('-d', '--decode'):
-        pass
-    elif operation in ('-e', '--encode'):
-        pass
+    if operation in ('-d', '--decode'):  # plagiarized from b58 function, kinda surprised it worked first try
+        ints = 0
+
+        for char in inpt:
+            ints = ints * 85 + alphabet.index(char)
+
+        result = ints.to_bytes((ints.bit_length() + 5) // 4, byteorder='big')
+        result = result.decode('utf-8')
+        return result
+    elif operation in ('-e', '--encode'):  # might be a slight issue w specific strings but I can't figure out what's wrong
+        inpt_bytes = inpt.encode('utf-8')
+
+        # padding input bytes with null bytes to make its length a multiple of 4
+        while len(inpt_bytes) % 4 != 0:
+            inpt_bytes += b'\x00'
+
+        result = ""
+
+        for i in range(0, len(inpt_bytes), 4):
+            chunk = int.from_bytes(inpt_bytes[i:i + 4], 'big')
+
+            encoded_chunk = ""
+            for _ in range(5):
+                encoded_chunk = alphabet[chunk % 85] + encoded_chunk
+                chunk //= 85
+
+            result += encoded_chunk
+        return result
     else:
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
@@ -367,9 +396,38 @@ def b91(operation, inpt, *_):
     # alphabet = ''.join(chr(i) for i in range(33, 127))
 
     if operation in ('-d', '--decode'):
-        pass
+        print("\nImplementation in progress")
     elif operation in ('-e', '--encode'):
-        pass
+        '''inpt_bytes = inpt.encode('utf-8')
+        result = ""
+        val = 0
+        bits = 0
+
+        for byte in inpt_bytes:
+            # bits - current position in combined value (val)
+            # shift byte to the left by number specified by the value of bits
+            # takes left shifted value, performs bitwise OR with the new value, and reassigns the value to val
+            val |= byte << bits
+            bits += 8
+
+            if bits >= 13:
+                # extracts lowest 13 bits from combined value (val), 8191 is a binary mask w 13 bits set to 1
+                # this does a bitwise AND between val and 8191 and keeps the bits that are set to 1 in both
+                chunk = val & 8191
+                # right shifts val by 13 bits (discard bits used for current chunk)
+                val >>= 13
+                # updates the bit counter to reflect val change
+                bits -= 13
+
+                for _ in range(2):
+                    result += alphabet[chunk % 91]
+                    chunk //= 91
+
+        if bits > 0:
+            result += alphabet[val % 91]
+        return result
+        '''
+        print("\nImplementation in progress")
     else:
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
