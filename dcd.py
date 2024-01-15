@@ -1,5 +1,7 @@
 import sys
 
+# organization type functions ------------------------------------------------------------------------------------------
+
 
 def banner():
     print_green(r'     __       __      ___ ___')
@@ -10,7 +12,8 @@ def banner():
 
 
 def usage():
-    print_blue('\n[  Usage  ] \npython3 dcd.py <base> -d/-e "input" optional: -o/-O <output file>\n')
+    print_blue('\n[  Usage  ] \npython3 dcd.py <base> -d, --decode/-e, --encode "input string"/.txt file optional: -o/-O <output file>\n'
+               '\n[  Example  ] \npython3 dcd.py -b16 -e "test string" -o test.txt\n')
     bases = ['-b2, --base2, --binary \t\t<01100001>',
              '-b8, --base8, --octal \t\t<164 145 163 164>',
              '-b10, --base10, --decimal \t<116 101 115 116>',
@@ -19,8 +22,8 @@ def usage():
              '-b58, --base58 \t\t\t<3yZe7d>',
              '-b62, --base62 \t\t\t<289lyu>',
              '-b64, --base64 \t\t\t<dGVzdA==>',
-             '-b85, --base85, --ascii85 \t<>',
-             '-b91, --base91 \t\t\t<>',
+             '-b85, --base85, --ascii85 \t<FCfN8>',
+             '-b91, --base91 \t\t\t<fPNKd>',
              '-u, --unicode \t\t\t<U+74 U+65 U+73 U+74>']
     out = ['-o \t<append to file>', '-O \t<overwrite file>']  # '-Of \t<no warning force overwrite>']
 
@@ -87,6 +90,8 @@ def output(func):
 
     return wrapper
 
+# init operation flags -------------------------------------------------------------------------------------------------
+
 
 def op_list(*args):
     if not args:
@@ -126,10 +131,11 @@ def op_list(*args):
         except IndexError:
             print_red('\n[!] Missing information - decode/ encode flag or data string\n')
 
+# base operation functions ---------------------------------------------------------------------------------------------
 
-# done
+
 @output
-def b2(operation, inpt, *_):  # *_ placeholder for the wrapper function cus it fully breaks without it 
+def b2(operation, inpt, *_):  # *_ placeholder for the wrapper function cus it fully breaks without it
     if operation in ('-d', '--decode'):
         inpt = inpt.replace(' ', '')
 
@@ -147,7 +153,6 @@ def b2(operation, inpt, *_):  # *_ placeholder for the wrapper function cus it f
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# done
 @output
 def b8(operation, inpt, *_):
     if operation in ('-d', '--decode'):
@@ -167,7 +172,6 @@ def b8(operation, inpt, *_):
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# done
 @output
 def b10(operation, inpt, *_):
     if operation in ('-d', '--decode'):
@@ -182,7 +186,6 @@ def b10(operation, inpt, *_):
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# done
 @output
 def b16(operation, inpt, *_):
     if operation in ('-d', '--decode'):
@@ -201,7 +204,6 @@ def b16(operation, inpt, *_):
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# done
 @output
 def b32(operation, inpt, *_):
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567'
@@ -241,7 +243,6 @@ def b32(operation, inpt, *_):
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# done
 @output
 def b58(operation, inpt, *_):  # ooo bitcoin
 
@@ -275,7 +276,6 @@ def b58(operation, inpt, *_):  # ooo bitcoin
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# done
 @output
 def b62(operation, inpt, *_):
     alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz'
@@ -306,7 +306,6 @@ def b62(operation, inpt, *_):
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# done
 @output
 def b64(operation, inpt, *_):
     alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
@@ -375,7 +374,6 @@ def b91(operation, inpt, *_):
         print_red('\n[!] Incorrect flag provided (decode or encode only)\n')
 
 
-# done
 @output
 def uni(operation, inpt, *_):
     if operation in ('-d', '--decode'):
