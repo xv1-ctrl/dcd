@@ -1,8 +1,17 @@
 #!/usr/bin/python3
 
 import sys
+import os
 
 # organization type functions ------------------------------------------------------------------------------------------
+
+py = "python3 dcd.py"
+
+
+def osd():
+    global py
+    if 'posix' in os.name:  # mac or linux - unix based
+        py = "./dcd.py"
 
 
 def banner():
@@ -16,8 +25,9 @@ def banner():
 
 
 def usage():
-    print_blue('\n[  Usage  ] \npython3 dcd.py <base> -d, --decode/-e, --encode "input string"/.txt file optional: -o/-O <output file>\n'
-               '\n[  Example  ] \npython3 dcd.py -b16 -e "test string" -o test.txt\n')
+    global py
+    print_blue(f'\n[  Usage  ] \n{py} <base> -d, --decode/-e, --encode "input string"/.txt file optional: -o/-O <output file>\n'
+               f'\n[  Example  ] \n{py} -b16 -e "test string" -o test.txt\n')
     bases = ['-b2, --base2, --binary \t\t<01100001>',
              '-b8, --base8, --octal \t\t<164 145 163 164>',
              '-b10, --base10, --decimal \t<116 101 115 116>',
@@ -456,4 +466,5 @@ def uni(operation, inpt, *_):
 
 
 if __name__ == '__main__':
+    osd()
     op_list(*sys.argv[1:])
