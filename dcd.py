@@ -1,14 +1,18 @@
+#!/usr/bin/python3
+
 import sys
 
 # organization type functions ------------------------------------------------------------------------------------------
 
 
 def banner():
+    print('\n')
     print_green(r'     __       __      ___ ___')
     print_green(r' ___/ /______/ / _  _<  // _ \ ')
     print_green(r'/ _  / __/ _  / | |/ / // // /')
     print_green(r'\_,_/\__/\_,_/  |___/_(_)___/ ')
     print_green(r'<   -h or --help for usage   >')
+    print('\n')
 
 
 def usage():
