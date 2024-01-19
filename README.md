@@ -9,7 +9,7 @@
 - `git clone https://github.com/pwnedbyisa/dcd.git`
 - cd into `dcd` directory
 - **linux** - `chmod +x install.sh`, `./install.sh`, `./dcd`
-- **windows** - `python3 dcd.py`
+- **windows** - `.\dcd`
 
 ___
 #### Features
@@ -20,7 +20,7 @@ ___
 ___
 #### Usage
 ```
-python3 dcd.py <base> -d/-e "input string" optional: -o/-O <output file>
+./dcd.py <base> -d/-e "input string" optional: -o/-O <output file>
 
 >> Bases
 -b2, --base2, --binary          <01100001>
