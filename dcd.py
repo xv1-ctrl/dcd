@@ -5,7 +5,7 @@ import os
 
 # organization type functions ------------------------------------------------------------------------------------------
 
-py = "python3 dcd.py"
+py = ".\dcd.py"
 
 
 def osd():
