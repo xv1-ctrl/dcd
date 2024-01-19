@@ -8,7 +8,8 @@
 #### Installation
 - `git clone https://github.com/pwnedbyisa/dcd.git`
 - cd into `dcd` directory
-- `python3 dcd.py`
+- **linux** - `chmod +x install.sh`, `./install.sh`, `./dcd`
+- **windows** - `python3 dcd.py`
 
 ___
 #### Features
