@@ -5,13 +5,13 @@ import os
 
 # organization type functions ------------------------------------------------------------------------------------------
 
-py = ".\dcd.py"
+py = ".\dcd"
 
 
 def osd():
     global py
     if 'posix' in os.name:  # mac or linux - unix based
-        py = "./dcd.py"
+        py = "./dcd"
 
 
 def banner():
