@@ -9,7 +9,7 @@ Installation
 ------------
 - git clone https://github.com/pwnedbyisa/dcd.git
 - cd into dcd directory
-- linux - chmod +x install.sh, ./install.sh, ./dcd
+- linux - chmod +x install.sh, sudo ./install.sh, dcd
 - windows - .\dcd
 
 Features
