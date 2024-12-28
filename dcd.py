@@ -11,7 +11,7 @@ py = ".\dcd"
 def osd():
     global py
     if 'posix' in os.name:  # mac or linux - unix based
-        py = "./dcd"
+        py = "dcd"
 
 
 def banner():
