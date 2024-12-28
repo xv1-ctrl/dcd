@@ -1,24 +1,25 @@
-## dcd.py - decoding base, binary, hex, etc from the terminal
+DCD - terminal based decoding and encoding tool written in python
 
-> This is a work in progress <br>
-> Some features (such as .txt file input) are not fully implemented yet<br>
-> Also base85 only works correctly about 50% of the time<br>
+> This is a work in progress
+> Some features (such as .txt file input) are not fully implemented yet
+> Also base85 only works correctly about 50% of the time
 > Everything else is fine (to my knowledge)
 
-#### Installation
-- `git clone https://github.com/pwnedbyisa/dcd.git`
-- cd into `dcd` directory
-- **linux** - `chmod +x install.sh`, `./install.sh`, `./dcd`
-- **windows** - `.\dcd`
+Installation
+------------
+- git clone https://github.com/pwnedbyisa/dcd.git
+- cd into dcd directory
+- linux - chmod +x install.sh, ./install.sh, ./dcd
+- windows - .\dcd`
 
-___
-#### Features
+Features
+--------
 - base 2 (binary), 8 (octal), 10 (decimal), 16 (hex), 32, 58, 62, 64, 85, 91
 - ascii encoding and base decoding
-- append/ write to output `.txt` files
+- append/ write to output .txt files
 
-___
-#### Usage
+Usage
+-----
 ```
 ./dcd.py <base> -d/-e "input string" optional: -o/-O <output file>
 
@@ -41,6 +42,6 @@ ___
 -Of     <no warning force overwrite>
 ```
 
-___
-#### Later Additions
+Later Additions
+---------------
 - maybe cipher decoding
