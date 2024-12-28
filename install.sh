@@ -2,4 +2,4 @@
 
 chmod +x dcd.py
 
-mv dcd.py dcd
+sudo mv dcd.py /usr/bin/dcd
