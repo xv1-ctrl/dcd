@@ -20,7 +20,6 @@ Features
 
 Usage
 -----
-```
 ./dcd.py <base> -d/-e "input string" optional: -o/-O <output file>
 
 >> Bases
@@ -40,7 +39,6 @@ Usage
 -o      <append to file>
 -O      <overwrite file (with warning)>
 -Of     <no warning force overwrite>
-```
 
 Later Additions
 ---------------
